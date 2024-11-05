@@ -34,7 +34,7 @@ function drawArcs(c1, c2, r) {
   const cx = width / 2; // 中心は (cx, cy)
   const cy = height / 2;
   for (let i = 0; i < 20; i++) {
-    let start = TWO_PI / 20 * i;
+    let start = TWO_PI / 20 * i; //2πで一周　それを20分割
     let stop = TWO_PI / 20 * (i + 1);
     fill(i % 2 == 0 ? c1 : c2);
     arc(cx, cy, r, r, start, stop, PIE);
