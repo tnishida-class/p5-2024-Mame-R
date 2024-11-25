@@ -19,16 +19,21 @@ function setup(){
 
   // ここから平均・最大・最小を求めます
   let average, largest, smallest;
-  // BLANK[1]　平均値（ヒント average = 合計 / 配列の長さ）
+  
+  average= sum/scores.length; // BLANK[1]　平均値（ヒント average = 合計 / 配列の長さ）
 
   largest = 0;
-  for(let i = 0; i < scores.length; i++){
-    // BLANK[2]　ヒント：今までの最大値 largest と scores[i] を比較する
+  for(let i = 1; i < scores.length; i++){
+    if (scores[i] > largest) {
+      largest = scores[i];
+    } // BLANK[2]　ヒント：今までの最大値 largest と scores[i] を比較する
   }
 
   smallest = 100;
   for(let i = 0; i < scores.length; i++){
-    // BLANK[3]　ヒント：最小値とだいたい同じ
+  　if (scores[i] < smallest) {
+      smallest = scores[i];
+    }  // BLANK[3]　ヒント：最小値とだいたい同じ
   }
 
   // ここから棒グラフを描いていきます。まずは背景に横線をn本引く
@@ -40,11 +45,28 @@ function setup(){
   for(let i = 0; i < scores.length; i++){
     const dx = width / scores.length;
     const h = height * scores[i] / 100;
-    // BLANK[4] ヒント: 条件分岐を使って色を変更します
+    
+    if (scores[i] === largest) {
+      fill(255, 165, 0); // 最大値はオレンジ色
+    } else if (scores[i] === smallest) {
+      fill(0, 0, 255); // 最小値は青色
+    } else {
+      fill(95, 105, 107);
+    }  // BLANK[4] ヒント: 条件分岐を使って色を変更します
     rect(i * dx + 2, height - h, dx - 4, h);
     fill(0);
     text(scores[i].toPrecision(3), i * dx, height - h);
   }
 
-  // BLANK[5] 平均点の線を引きます
+  
+  stroke(3, 173, 252) // BLANK[5] 平均点の線を引きます
+  line(0, height - average * height / 100, width, height - average * height / 100);
+  //得点が 100 で最大になるようにするため、scores[i] を 100 で割って、0 から 1 の範囲にスケーリング
+  //次に、それをheight（ここでは 400）に掛けることで、得点に応じたピクセルの高さが決まります。(キャンバスが400:400ピクセル)
+
+  // 平均値の数字をグラフ上に表示
+  fill(0); // 文字色を黒に設定
+  textSize(10); // 文字の大きさを設定
+  textAlign(CENTER, CENTER); // テキストを中央揃え
+  text(`Ave.: ${average.toFixed(2)}`, width / 2, height - average * height / 100 - 10); // 平均値を描画
 }
