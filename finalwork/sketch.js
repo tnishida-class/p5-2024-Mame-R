@@ -1,7 +1,7 @@
 // 最終課題を制作しよう
 
-let dotX, dotY; // 現在の位置
-let initialDotX, initialDotY; // 初期位置
+let dotX, dotY; // 点の現在の位置
+let initialDotX, initialDotY; // 点の初期位置
 let isDragging = false; // ドラッグ中かどうか
 
 function setup() {
@@ -18,7 +18,7 @@ function setup() {
 }
 
 function draw() {
-  background(10, 40, 60); // 背景を毎フレーム更新して残像を消す
+  background(10, 40, 60); // 背景を毎フレーム更新して点の残像を消す
 
   // 中心円
   fill(144, 210, 245);
