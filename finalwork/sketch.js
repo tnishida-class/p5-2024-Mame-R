@@ -18,6 +18,8 @@ function setup() {
 }
 
 function draw() {
+  background(10, 40, 60); // 背景を毎フレーム更新して残像を消す
+
   // 中心円
   fill(144, 210, 245);
   noStroke();
